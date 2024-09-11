@@ -42,7 +42,7 @@ function isValidEthereumAddress(address) {
 function checkInAddress(address) {
     const url = `https://points-mainnet.reddio.com/v1/daily_checkin?wallet_address=${encodeURIComponent(address)}`;
     return fetch(url, {
-        method: 'POST',
+        method: 'GET',
     }).then(response => response.json());
 }
 
