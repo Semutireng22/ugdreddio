@@ -22,20 +22,17 @@ document.getElementById('checkin-form').addEventListener('submit', function(even
 
     addressArray.forEach(address => {
         if (!isValidEthereumAddress(address)) {
-            resultDiv.innerHTML += `<p>Alamat wallet tidak valid: ${address}</p>`;
+            displayResult(`Alamat wallet tidak valid: ${address}`, 'error');
             return;
         }
 
         checkInAddress(address)
             .then(response => {
-                if (response.status === "Error" && response.error === "Already checked in") {
-                    resultDiv.innerHTML += `<p>Alamat wallet ${address} sudah melakukan check-in.</p>`;
-                } else {
-                    resultDiv.innerHTML += `<p>Check-in berhasil untuk ${address}.</p>`;
-                }
+                const message = response.data ? response.data.message : 'Tidak ada pesan dari server';
+                displayResult(`Alamat wallet ${address}: ${message}`, 'success');
             })
             .catch(error => {
-                resultDiv.innerHTML += `<p>Gagal melakukan check-in untuk ${address}: ${error.message}</p>`;
+                displayResult(`Gagal melakukan check-in untuk ${address}: ${error.message}`, 'error');
             });
     });
 });
@@ -47,7 +44,7 @@ function isValidEthereumAddress(address) {
 function checkInAddress(address) {
     const url = `https://points-mainnet.reddio.com/v1/daily_checkin?wallet_address=${encodeURIComponent(address)}`;
     return fetch(url, {
-        method: 'GET', // Ganti menjadi 'GET' jika server tidak mendukung 'POST'
+        method: 'POST', // Ganti menjadi 'GET' jika server tidak mendukung 'POST'
     })
     .then(response => {
         if (!response.ok) {
@@ -61,5 +58,8 @@ function checkInAddress(address) {
 
 function displayResult(message, type) {
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `<p style="color: ${type === 'success' ? '#00ff00' : '#ff0000'}">${message}</p>`;
+    const resultItem = document.createElement('p');
+    resultItem.textContent = message;
+    resultItem.style.color = type === 'success' ? '#00ff00' : '#ff0000'; // Green for success, red for error
+    resultDiv.appendChild(resultItem);
 }
