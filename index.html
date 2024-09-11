@@ -1,27 +1,38 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UGD AIRDROP - Daily Check-in</title>
+    <meta name="description" content="UGD AIRDROP Daily Check-In">
+    <meta name="keywords" content="UGD AIRDROP, daily check-in, crypto, blockchain, airdrop">
+    <meta name="author" content="UGD Airdrop">
+    <title>UGD AIRDROP Daily Check-In</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>UGD AIRDROP</h1>
-            <h2>Daily Check-in</h2>
-        </header>
-        <form id="checkin-form">
-            <label for="wallet-addresses">Masukkan alamat wallet (pisahkan dengan koma):</label>
-            <textarea id="wallet-addresses" rows="4" placeholder="0xA43a2873A93e313672012A6a71dE9F15ec12923d, 0xAnotherWalletAddress"></textarea>
-            <button type="submit">Check-in</button>
-        </form>
-        <div id="result"></div>
-        <footer>
-            <p>Website by <p align="center">Website by <a href="https://t.me/ugdairdrop">UGD Airdrop</a></p></p>
-        </footer>
-    </div>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>UGD AIRDROP</h1>
+    </header>
+    <main class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form id="checkin-form" class="bg-light p-4 rounded shadow">
+                    <div class="mb-3">
+                        <label for="wallet-addresses" class="form-label">Masukkan Alamat Wallet (pisahkan dengan koma):</label>
+                        <textarea id="wallet-addresses" class="form-control" rows="5" placeholder="0x123..., 0x456..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Periksa Check-In</button>
+                </form>
+                <div id="result" class="mt-4"></div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-primary text-white text-center py-3">
+        <p>Created by <a href="https://t.me/ugdairdrop" class="text-light">UGD Airdrop</a></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
