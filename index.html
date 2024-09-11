@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UGD AIRDROP Daily Check-In">
-    <meta name="keywords" content="UGD AIRDROP, daily check-in, crypto, blockchain, airdrop">
+    <meta name="description" content="UGD AIRDROP Daily Check-In tool for crypto wallet addresses. Check-in your crypto wallets easily with our tool.">
+    <meta name="keywords" content="UGD AIRDROP, crypto check-in, wallet check-in, crypto tool">
     <meta name="author" content="UGD Airdrop">
     <title>UGD AIRDROP Daily Check-In</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-3">
+    <header class="bg-dark text-light text-center py-4">
         <h1>UGD AIRDROP</h1>
     </header>
     <main class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <form id="checkin-form" class="bg-light p-4 rounded shadow">
-                    <div class="mb-3">
-                        <label for="wallet-addresses" class="form-label">Masukkan Alamat Wallet (pisahkan dengan koma):</label>
-                        <textarea id="wallet-addresses" class="form-control" rows="5" placeholder="0x123..., 0x456..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Periksa Check-In</button>
-                </form>
-                <div id="result" class="mt-4"></div>
+        <form id="checkin-form">
+            <div class="form-group">
+                <label for="wallet-addresses">Masukkan Alamat Wallet (pisahkan dengan koma):</label>
+                <textarea id="wallet-addresses" class="form-control" rows="10" placeholder="0x123..., 0x456..."></textarea>
             </div>
-        </div>
+            <button type="submit" class="btn btn-primary">Periksa Check-In</button>
+        </form>
+        <div id="result" class="mt-4"></div>
     </main>
-    <footer class="bg-primary text-white text-center py-3">
-        <p>Created by <a href="https://t.me/ugdairdrop" class="text-light">UGD Airdrop</a></p>
+    <footer class="bg-dark text-light text-center py-3">
+        <p>Created by UGD Airdrop | <a href="https://t.me/ugdairdrop" target="_blank" class="text-light">t.me/ugdairdrop</a></p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
