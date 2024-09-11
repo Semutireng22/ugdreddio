@@ -46,6 +46,7 @@ textarea {
     border-radius: 4px;
     background: #222; /* Warna latar belakang textarea */
     color: #fff; /* Warna teks textarea putih */
+    box-sizing: border-box;
 }
 
 button {
@@ -72,4 +73,42 @@ footer {
     text-align: center;
     margin-top: 20px;
     color: #ccc; /* Warna teks footer abu-abu terang */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    textarea {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header h2 {
+        font-size: 1em;
+    }
+
+    textarea {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 8px;
+    }
 }
