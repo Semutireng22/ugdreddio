@@ -16,38 +16,50 @@ document.getElementById('checkin-form').addEventListener('submit', function(even
         return;
     }
 
-    addressArray.forEach(address => {
-        if (!isValidEthereumAddress(address)) {
-            displayResult(`Alamat wallet tidak valid: ${address}`, 'error');
-            return;
-        }
-    });
+    // Clear previous results
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = '';
 
     addressArray.forEach(address => {
+        if (!isValidEthereumAddress(address)) {
+            resultDiv.innerHTML += `<p>Alamat wallet tidak valid: ${address}</p>`;
+            return;
+        }
+
         checkInAddress(address)
             .then(response => {
-                displayResult(`Check-in berhasil untuk ${address}.`, 'success');
+                if (response.status === "Error" && response.error === "Already checked in") {
+                    resultDiv.innerHTML += `<p>Alamat wallet ${address} sudah melakukan check-in.</p>`;
+                } else {
+                    resultDiv.innerHTML += `<p>Check-in berhasil untuk ${address}.</p>`;
+                }
             })
             .catch(error => {
-                displayResult(`Gagal melakukan check-in untuk ${address}: ${error.message}`, 'error');
+                resultDiv.innerHTML += `<p>Gagal melakukan check-in untuk ${address}: ${error.message}</p>`;
             });
     });
 });
 
 function isValidEthereumAddress(address) {
-    // Basic validation for Ethereum address (starts with '0x' and has 42 characters)
     return /^0x[a-fA-F0-9]{40}$/.test(address);
 }
 
 function checkInAddress(address) {
     const url = `https://points-mainnet.reddio.com/v1/daily_checkin?wallet_address=${encodeURIComponent(address)}`;
     return fetch(url, {
-        method: 'GET',
-    }).then(response => response.json());
+        method: 'GET', // Ganti menjadi 'GET' jika server tidak mendukung 'POST'
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => {
+                throw new Error(`HTTP error ${response.status}: ${text}`);
+            });
+        }
+        return response.json();
+    });
 }
 
 function displayResult(message, type) {
     const resultDiv = document.getElementById('result');
-    resultDiv.textContent = message;
-    resultDiv.style.color = type === 'success' ? '#00ff00' : '#ff0000'; // Green for success, red for error
+    resultDiv.innerHTML = `<p style="color: ${type === 'success' ? '#00ff00' : '#ff0000'}">${message}</p>`;
 }
