@@ -28,10 +28,15 @@ document.getElementById('checkin-form').addEventListener('submit', function(even
 
         checkInAddress(address)
             .then(response => {
-                const message = response.data ? response.data.message : 'Tidak ada pesan dari server';
-                displayResult(`Alamat wallet ${address}: ${message}`, 'success');
+                if (response.status === 'OK') {
+                    const message = response.data ? response.data.message : 'Tidak ada pesan dari server';
+                    displayResult(`Alamat wallet ${address}: ${message}`, 'success');
+                } else {
+                    displayResult(`Alamat wallet ${address}: ${response.error}`, 'error');
+                }
             })
             .catch(error => {
+                // Handle error when fetching data
                 displayResult(`Gagal melakukan check-in untuk ${address}: ${error.message}`, 'error');
             });
     });
