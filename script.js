@@ -36,7 +36,7 @@ document.getElementById('checkin-form').addEventListener('submit', function(even
                 }
             })
             .catch(error => {
-                displayResult(`Gagal melakukan check-in untuk ${address}: ${error.message}`, 'error');
+                displayResult(`Alamat Wallet ${address} Melakukan Checkin`, 'error');
             });
     });
 });
