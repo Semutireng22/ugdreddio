@@ -44,7 +44,7 @@ function isValidEthereumAddress(address) {
 function checkInAddress(address) {
     const url = `https://points-mainnet.reddio.com/v1/daily_checkin?wallet_address=${encodeURIComponent(address)}`;
     return fetch(url, {
-        method: 'POST', // Ganti menjadi 'GET' jika server tidak mendukung 'POST'
+        method: 'GET', // Ganti menjadi 'GET' jika server tidak mendukung 'POST'
     })
     .then(response => {
         if (!response.ok) {
